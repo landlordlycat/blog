@@ -1,44 +1,52 @@
-import React, { useState } from 'react';
-import clsx from 'clsx';
-import {
-  PageMetadata,
-  HtmlClassNameProvider,
-  ThemeClassNames,
-  translateTagsPageTitle,
-} from '@docusaurus/theme-common';
-import BlogLayout from '@theme/BlogLayout';
-import TagsListByLetter from '@theme/TagsListByLetter';
-import { TagsListByFlat } from '../TagsListByLetter';
-import type { Props } from '@theme/BlogTagsListPage';
-import SearchMetadata from '@theme/SearchMetadata';
-import { Icon } from '@iconify/react';
+import { HtmlClassNameProvider, PageMetadata, ThemeClassNames, translateTagsPageTitle } from '@docusaurus/theme-common'
+import { Icon } from '@iconify/react'
+import { cn } from '@site/src/lib/utils'
+import type { Props } from '@theme/BlogTagsListPage'
+import SearchMetadata from '@theme/SearchMetadata'
+import TagsListByLetter from '@theme/TagsListByLetter'
+import { useState } from 'react'
+import { TagsListByFlat } from '../TagsListByLetter'
+
+import MyLayout from '../MyLayout'
 
 export default function BlogTagsListPage({ tags, sidebar }: Props): JSX.Element {
-  const title = translateTagsPageTitle();
+  const title = translateTagsPageTitle()
 
-  const [type, setType] = useState<'list' | 'grid'>('list');
+  const [type, setType] = useState<'list' | 'grid'>('list')
 
   return (
-    <HtmlClassNameProvider
-      className={clsx(
-        ThemeClassNames.wrapper.blogPages,
-        ThemeClassNames.page.blogTagsListPage,
-      )}>
+    <HtmlClassNameProvider className={cn(ThemeClassNames.wrapper.blogPages, ThemeClassNames.page.blogTagsListPage)}>
       <PageMetadata title={title} />
       <SearchMetadata tag="blog_tags_list" />
-      <BlogLayout sidebar={sidebar}>
-        <div className="blogtag__swith-view">
+      <MyLayout>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
           <h1>{title}</h1>
-          <div>
-            <Icon icon='ph:list-fill' width="24" height="24" onClick={() => setType('list')}
-              color={type === 'list' ? 'var(--ifm-color-primary)' : '#ccc'} />
-            <Icon icon='ph:grid-four' width="24" height="24" onClick={() => setType('grid')}
-              color={type === 'grid' ? 'var(--ifm-color-primary)' : '#ccc'} />
-          </div>
+          <span className="flex">
+            <Icon
+              icon="ph:list"
+              width="24"
+              height="24"
+              onClick={() => setType('list')}
+              color={type === 'list' ? 'var(--ifm-color-primary)' : '#ccc'}
+            />
+            <Icon
+              icon="ph:grid-four"
+              width="24"
+              height="24"
+              onClick={() => setType('grid')}
+              color={type === 'grid' ? 'var(--ifm-color-primary)' : '#ccc'}
+            />
+          </span>
         </div>
         {type === 'list' && <TagsListByLetter tags={tags} />}
         {type === 'grid' && <TagsListByFlat tags={tags} />}
-      </BlogLayout>
+      </MyLayout>
     </HtmlClassNameProvider>
-  );
+  )
 }

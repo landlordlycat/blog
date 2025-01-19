@@ -5,58 +5,119 @@ description: 愧怍的自我介绍
 hide_table_of_contents: true
 ---
 
-import { Icon } from '@iconify/react';
+import { Icon } from '@iconify/react'
+import Comment from '@site/src/components/Comment'
+import social from '@site/data/social'
 
-# 👋 你好! 我是愧怍
 
-🧑 大学在读，来自中国
+# 你好👋，我是愧怍。
 
-👨‍💻 编程爱好者，编写所感兴趣的项目，希望能为开源社区做出一份贡献
+- <p className="inline-flex gap-1">👨‍💻 全网同名愧怍(Kuizuo)，头像[酷乐](https://baike.baidu.com/item/%E9%85%B7%E4%B9%90/18058703) <img src="/img/logo.webp" width="26" heigth="26" className="rounded-full" /></p>
 
-🌱 保持学习，希望在有限的时间内，学到无限的可能
+- 🧑 一个刚本科毕业的大学生🐂🐴，现居福州。
 
-🐛 曾写过比较长时间的爬虫，学过Web与安卓逆向，现在主攻js/ts全栈，并将长期发展下去。
+- 🐛 曾写过两年的易语言+爬虫，在此期间接触了[自动化和逆向工程](/blog/2020-year-end-summary/)，现在主攻 JS/TS 全栈开发，立志成为一名全栈工程师。
 
-### 🤔 为什么叫愧怍
+- 🤯 酷爱折腾，有极强的⾃我学习能⼒与问题解决能⼒，也有很重的代码洁癖。
 
-愧怍，有愧疚，惭愧之意。也是本人使用此名所想表达的意思。
+- 🎮 自从游戏账户(QQ)被封，让我成功戒掉了游戏瘾，摆脱了网瘾少年的身份。
 
-我曾因某些错误的做法而感到自责苦恼。希望以这个名字不断激励自我，反省过往，不想再次辜负我自己所经历的那么多事物，仅此而已。
+- 💡 我通常会将我的学习过程总结为项目或博客文章的形式，并乐意与他人分享。当其他人学习该技术时，可以参照我的项目或文章，我认为这非常有意义。
 
-### 🛠 技术栈
+### 名字由来
 
-![JavaScript](https://img.shields.io/badge/-JavaScript-333333?style=flat&logo=javascript)
-![TypeScript](https://img.shields.io/badge/-TypeScript-333333?style=flat&logo=typescript)
-![Python](https://img.shields.io/badge/-Python-333333?style=flat&logo=python)
-![Vue](https://img.shields.io/badge/-Vue-333333?style=flat&logo=vue.js)
-![React](https://img.shields.io/badge/-React-333333?style=flat&logo=react)
-![Node.js](https://img.shields.io/badge/-Node-333333?style=flat&logo=node.js)
-![NestJs](https://img.shields.io/badge/-NestJs-333333?style=flat&logo=nestjs&logoColor=ea2845)
-![Vite](https://img.shields.io/badge/-Vite-333333?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MTAiIGhlaWdodD0iNDA0IiB2aWV3Qm94PSIwIDAgNDEwIDQwNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0zOTkuNjQxIDU5LjUyNDZMMjE1LjY0MyAzODguNTQ1QzIxMS44NDQgMzk1LjMzOCAyMDIuMDg0IDM5NS4zNzggMTk4LjIyOCAzODguNjE4TDEwLjU4MTcgNTkuNTU2M0M2LjM4MDg3IDUyLjE4OTYgMTIuNjgwMiA0My4yNjY1IDIxLjAyODEgNDQuNzU4NkwyMDUuMjIzIDc3LjY4MjRDMjA2LjM5OCA3Ny44OTI0IDIwNy42MDEgNzcuODkwNCAyMDguNzc2IDc3LjY3NjNMMzg5LjExOSA0NC44MDU4QzM5Ny40MzkgNDMuMjg5NCA0MDMuNzY4IDUyLjE0MzQgMzk5LjY0MSA1OS41MjQ2WiIgZmlsbD0idXJsKCNwYWludDBfbGluZWFyKSIvPgo8cGF0aCBkPSJNMjkyLjk2NSAxLjU3NDRMMTU2LjgwMSAyOC4yNTUyQzE1NC41NjMgMjguNjkzNyAxNTIuOTA2IDMwLjU5MDMgMTUyLjc3MSAzMi44NjY0TDE0NC4zOTUgMTc0LjMzQzE0NC4xOTggMTc3LjY2MiAxNDcuMjU4IDE4MC4yNDggMTUwLjUxIDE3OS40OThMMTg4LjQyIDE3MC43NDlDMTkxLjk2NyAxNjkuOTMxIDE5NS4xNzIgMTczLjA1NSAxOTQuNDQzIDE3Ni42MjJMMTgzLjE4IDIzMS43NzVDMTgyLjQyMiAyMzUuNDg3IDE4NS45MDcgMjM4LjY2MSAxODkuNTMyIDIzNy41NkwyMTIuOTQ3IDIzMC40NDZDMjE2LjU3NyAyMjkuMzQ0IDIyMC4wNjUgMjMyLjUyNyAyMTkuMjk3IDIzNi4yNDJMMjAxLjM5OCAzMjIuODc1QzIwMC4yNzggMzI4LjI5NCAyMDcuNDg2IDMzMS4yNDkgMjEwLjQ5MiAzMjYuNjAzTDIxMi41IDMyMy41TDMyMy40NTQgMTAyLjA3MkMzMjUuMzEyIDk4LjM2NDUgMzIyLjEwOCA5NC4xMzcgMzE4LjAzNiA5NC45MjI4TDI3OS4wMTQgMTAyLjQ1NEMyNzUuMzQ3IDEwMy4xNjEgMjcyLjIyNyA5OS43NDYgMjczLjI2MiA5Ni4xNTgzTDI5OC43MzEgNy44NjY4OUMyOTkuNzY3IDQuMjczMTQgMjk2LjYzNiAwLjg1NTE4MSAyOTIuOTY1IDEuNTc0NFoiIGZpbGw9InVybCgjcGFpbnQxX2xpbmVhcikiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhciIgeDE9IjYuMDAwMTciIHkxPSIzMi45OTk5IiB4Mj0iMjM1IiB5Mj0iMzQ0IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiM0MUQxRkYiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjQkQzNEZFIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQxX2xpbmVhciIgeDE9IjE5NC42NTEiIHkxPSI4LjgxODE4IiB4Mj0iMjM2LjA3NiIgeTI9IjI5Mi45ODkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iI0ZGRUE4MyIvPgo8c3RvcCBvZmZzZXQ9IjAuMDgzMzMzMyIgc3RvcC1jb2xvcj0iI0ZGREQzNSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNGRkE4MDAiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4=)
-![Nuxt](https://img.shields.io/badge/-Nuxt-333333?style=flat&logo=data:image/png;base64,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)
-![Git](https://img.shields.io/badge/-Git-333333?style=flat-square&logo=git)
-![GitHub](https://img.shields.io/badge/-GitHub-333333?style=flat-square&logo=github)
-![Docker](https://img.shields.io/badge/-Docker-333333?style=flat&logo=docker)
-![Mysql](https://img.shields.io/badge/-Mysql-333333?style=flat&logo=mysql)
-![MongoDB](https://img.shields.io/badge/-MongoDB-333333?style=flat&logo=mongodb)
-![Redis](https://img.shields.io/badge/-Redis-333333?style=flat&logo=redis)
-![Electron](https://img.shields.io/badge/-Electron-333333?style=flat&logo=electron)
-![Miniprogram](https://img.shields.io/badge/-Miniprogram-333333?style=flat&logo=wechat)
-![Reverse](https://img.shields.io/badge/-Reverse-333333?style=flat&logo=reverse)
-![HTTP](https://img.shields.io/badge/-HTTP-333333?style=flat&logo=http)
+**愧怍**，有愧疚/惭愧之意😔。也是本人使用此名所想表达的意思。
 
-<a href="https://github.com/kuizuo">
-  <img src="https://metrics.lecoq.io/kuizuo?template=classic&base.activity=0&base.community=0&base.repositories=0&base.metadata=0&isocalendar=1&base=header%2C%20activity%2C%20community%2C%20repositories%2C%20metadata&base.indepth=false&base.hireable=false&isocalendar=false&isocalendar.duration=full-year&config.timezone=Asia%2FShanghai" />
-</a>
+我曾因某些错误的做法而感到自责苦恼，希望这个名字不断激励自我、反省过往，不再辜负我自己所经历的那么多事情。
 
-### ☎️ 联系我
+### 我的编程之旅(2 年逆向 + 3 年 Web)
 
-<p><Icon icon="ri:rss-line" width="20" heigth="20" /> <a href="/rss.xml">RSS</a></p>
+我与计算机结识较晚，高考结束我才拥有第一台笔记本电脑。我的第一门编程语言是[易语言](/blog/easy-language)，我学习到了外挂、逆向破解、注册机(批量)、网络协议(偏加密分析和爬虫向)、自动化脚本等技术。后来编写过一个对大学生友好的[软件](https://kuizuo.cn/blog/chaoxing-helper)被厦门某工作室看到，于是选择休学一同合作创业。复学重返校园，期间发生了些变故，导致我的技术栈转换，[从逆向工程转为 Web 全栈开发](https://kuizuo.cn/blog/2022-year-end-summary)。
 
-<p><Icon icon="ri:github-line" width="20" heigth="20" /> <a href="https://github.com/kuizuo" >Github</a></p>
+对易语言失去了新鲜感的我，需要一门更为强大的技术来支撑我编写体验友好的应用供客户使用，在逆向学习中积累了一定的 JS 知识，这也是我为什么会选择前端的原因。依靠跨平台解决方案，Web 网站、桌面端/移动端应用、小程序等应用都不在话下。
 
-<p><Icon icon="ri:qq-line" width="20" heigth="20" /> <a href="http://wpa.qq.com/msgrd?v=3&uin=911993023&site=qq&menu=yes">QQ</a></p>
+或许是因为学习易语言的因素，我走的全是野路子，我并未系统性的学习过 CS 知识。我对编程知识的理解来源于自我实践、不断折腾的过程当中。
 
-<p><Icon icon="ri:twitter-line" width="20" heigth="20" /> <a href="https://twitter.com/kuizuo">Twitter</a></p>
+### 兴趣爱好
 
-<p><Icon icon="ri:mail-open-line" width="20" heigth="20" /> <a href="mailto:hi@kuizuo.cn">hi@kuizuo.cn</a></p>
+- **手指极限** 入坑长达 8 年(现已退坑)，如转笔、魔方、花切等有关手指旋转的都能够杂耍一番。
+
+- **电音迷** 歌单只有电音，也只听电音。戴上耳机，沉浸在无限律动之中。有生之年定要制作首电子音乐。
+
+- **编程开发** 将想法付诸实践, 享受创造的乐趣。
+
+> 生命不息,折腾不止。
+
+### 我的设备
+
+- MacBook Pro M2 14 (买完 3 个月后, 苹果出 M3 了...)
+
+- iPhone 16 
+
+- Xiaomi MIX Fold 2 (折叠屏真的很拉，别买)
+
+- Google Pixel 4XL
+
+- Xiaomi Watch S2 / Apple Watch SE
+
+- 米家显示器挂灯 (买过最实用的设备)
+
+- 台式机 (AMD 5900X + RX 6750 GRE + 64G + 2TB)
+
+- ⌨️ Nuphy Air75 V2
+
+- 🖱 罗技 MX Master 3
+
+### 我会什么
+
+- 易语言程序 (能写但不想写，因为开发体验很差，我会考虑用其他技术平替)
+
+- Window/Andriod 自动化脚本、RPA
+
+- 爬虫 / 协议复现 (我更偏向于直接抓包，而不是自动化脚本，更愿意用 ts 而非 python)
+
+- 代码反混淆 / 逆向分析 (网页 js 乱杀，安卓止步 so 层，ios 打扰了)
+
+- Chrome 扩展程序 / Vscode 插件 (写个高级点的 demo 应该没问题)
+
+- Electron (曾经写过但很久没写了)
+
+- React Native (能够开发移动端偏内容项目)
+
+- 小程序 (能写但不想写，因为开发体验很差，特指 uni-app)
+
+- Web 全栈开发 (next.js 全栈开发与 nest.js 后端开发)
+
+- AI 应用开发 (基于 [AI SDK](https://sdk.vercel.ai/) + [langchian.js](https://js.langchain.com) )
+
+### 联系方式
+
+<p style={{ display: 'flex', 'align-items': 'center', gap: '0.5rem' }}>
+  <Icon icon="ri:github-line" width="20" heigth="20" />
+  <a href={social.github.href} target="_blank">kuizuo</a>
+</p>
+
+<p style={{ display: 'flex', 'align-items': 'center', gap: '0.5rem' }}>
+  <Icon icon="ri:twitter-x-line" width="20" heigth="20" />
+  <a href={social.x.href} target="_blank">kuizuo</a>
+</p>
+
+<p style={{ display: 'flex', 'align-items': 'center', gap: '0.5rem' }}>
+  <Icon icon="ri:wechat-2-line" width="20" heigth="20" />
+  <a href={social.wx.href} target="_blank">kuizuo12</a>
+</p>
+
+<p style={{ display: 'flex', 'align-items': 'center', gap: '0.5rem' }}>
+  <Icon icon="ri:mail-open-line" width="20" heigth="20" />
+  <a href={social.email.href} target="_blank">hi@kuizuo.cn</a>
+</p>
+
+
+
+---
+
+感谢你能看到这里，希望我的分享对你有帮助，如果你有什么困扰，也可咨询我，在我时间有限的情况下，我会竭力回复。
+
+> **既然都看到这了，不妨留下你的评论。**
+
+<Comment />

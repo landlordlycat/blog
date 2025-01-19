@@ -8,8 +8,6 @@ keywords: [electron, vue, vite]
 description: 搭建 Electron Vue3 的开发环境，用于编写跨平台应用
 ---
 
-![image-20220316204205165](https://img.kuizuo.cn/image-20220316204205165.png)
-
 之前用 electron-vue 写过一个半成品的桌面端应用，但是是基于 Vue2 的，最近又想重写点桌面端应用，想要上 Vue3+TypeScript，于是便有了这篇文章总结下具体的搭建过程。
 
 <!-- truncate -->
@@ -18,17 +16,17 @@ description: 搭建 Electron Vue3 的开发环境，用于编写跨平台应用
 
 Vue CLI 有一个插件`vue-cli-plugin-electron-builder`，可以非常方便的搭建 electron 环境。
 
-```sh
+```bash
 npm i @vue/cli -g
 ```
 
-```sh
+```bash
 vue create my-app
 ```
 
 根据自己项目的需求选择对应的依赖（例如 Babel，TS，Vuex 等等）
 
-```sh
+```bash
 Vue CLI v5.0.3
 ? Please pick a preset: Manually select features
 ? Check the features needed for your project: Babel, TS, Vuex, CSS Pre-processors, Linter
@@ -52,7 +50,7 @@ Vue CLI v5.0.3
 
 [Vue CLI Plugin Electron Builder (nklayman.github.io)](https://nklayman.github.io/vue-cli-plugin-electron-builder/)
 
-```sh
+```bash
 cd my-app
 vue add electron-builder
 ```
@@ -61,7 +59,7 @@ vue add electron-builder
 
 ### 启动项目
 
-```sh
+```bash
 npm run electron:serve
 ```
 
@@ -101,7 +99,7 @@ TypeError: loaderContext.getOptions is not a function
 
 当然也可以使用脚手架，可选择 React 与 Vue，实际上也就是创建上面的前两个模板
 
-```sh
+```bash
 npm create electron-vite
 ```
 
@@ -111,7 +109,7 @@ TODO...
 
 ## 总结
 
-因为 Electron 本质上还是一个浏览器，无论是 Vue 还是 React 开发也好，在传统网页开发的时候都有对应的调试地址，如http://127.0.0.1:3000，而electron的做法无非就是开启一个浏览器，然后和正常的网页开发一样，并提供桌面端的api使用。
+因为 Electron 本质上还是一个浏览器，无论是 Vue 还是 React 开发也好，在传统网页开发的时候都有对应的调试地址，如 [http://127.0.0.1:3000](http://127.0.0.1:3000)，而 electron 的做法无非就是开启一个浏览器，然后和正常的网页开发一样，并提供桌面端的 api 使用。
 
 目前社区两大 Vue+Electron 的脚手架主要是[electron-vue](https://github.com/SimulatedGREG/electron-vue)和[vue-cli-plugin-electron-builder](https://github.com/nklayman/vue-cli-plugin-electron-builder)，更多 electron 的开源项目都遵循着前者的项目结构，像上面的模板也就是。
 

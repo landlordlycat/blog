@@ -1,16 +1,9 @@
-.searchContainer {
-  margin-left: auto;
+.siteInfo code {
+  @apply p-4;
+  --ifm-pre-padding: 0 1rem 1rem;
 }
 
-.searchContainer input {
-  height: 30px;
-  border-radius: 15px;
-  padding: 10px;
-  border: 1px solid gray;
-}
-
-.showcaseList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+.codeBlock pre {
+  padding: 0;
+  margin: 0;
 }

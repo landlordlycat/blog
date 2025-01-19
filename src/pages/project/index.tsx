@@ -1,122 +1,109 @@
-import React, {useState, useEffect} from 'react';
-import _ from 'loadsh'
-import Layout from '@theme/Layout';
-import clsx from 'clsx';
-import Translate, {translate} from '@docusaurus/Translate';
+import { translate } from '@docusaurus/Translate'
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import { groupByProjects, projectTypeMap, projects } from '@site/data/projects'
+import { cn } from '@site/src/lib/utils'
+import ShowcaseCard from './_components/ShowcaseCard'
 
-import ShowcaseCard from './_components/ShowcaseCard';
-import {projects, groupByProjects} from '@site/data/project';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment'
 
-import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
-
-import styles from './styles.module.css';
+import { MagicContainer } from '@site/src/components/magicui/magic-card'
+import MyLayout from '@site/src/theme/MyLayout'
+import { upperFirst } from '@site/src/utils/jsUtils'
+import styles from './styles.module.css'
 
 const TITLE = translate({
   id: 'theme.project.title',
-  message: '项目展示',
-});
+  message: '项目',
+})
 const DESCRIPTION = translate({
   id: 'theme.project.description',
-  message: '以下项目均由本人开发，均可自由使用，部分开源。',
-});
+  message: '学而无用，不如学而用之。这里是我在技术领域中努力实践和应用的最佳证明。',
+})
 
-const GITHUB_URL = 'https://github.com/kuizuo';
+// const GITHUB_URL = 'https://github.com/kuizuo'
 
 type ProjectState = {
-  scrollTopPosition: number;
-  focusedElementId: string | undefined;
-};
+  scrollTopPosition: number
+  focusedElementId: string | undefined
+}
 
 export function prepareUserState(): ProjectState | undefined {
   if (ExecutionEnvironment.canUseDOM) {
     return {
       scrollTopPosition: window.scrollY,
       focusedElementId: document.activeElement?.id,
-    };
+    }
   }
 
-  return undefined;
-}
-
-const SearchNameQueryKey = 'name';
-
-function readSearchName(search: string) {
-  return new URLSearchParams(search).get(SearchNameQueryKey);
+  return undefined
 }
 
 function ShowcaseHeader() {
   return (
-    <section className="margin-top--lg margin-bottom--lg text--center">
-      <h1>{TITLE}</h1>
+    <section className="text-center">
+      <h2>{TITLE}</h2>
       <p>{DESCRIPTION}</p>
-      <a
+      {/* <a
         className="button button--primary"
         href={GITHUB_URL}
         target="_blank"
-        rel="noreferrer">
-        <Translate id="showcase.header.button">
-          🥰 前往 Github 克隆项目
-        </Translate>
-      </a>
+        rel="noreferrer"
+      >
+        <Translate id="showcase.header.button">前往 Github 克隆项目</Translate>
+      </a> */}
     </section>
-  );
+  )
 }
 
 function ShowcaseCards() {
+  const { i18n } = useDocusaurusContext()
+  const lang = i18n.currentLocale
+
   if (projects.length === 0) {
     return (
       <section className="margin-top--lg margin-bottom--xl">
-        <div className="container padding-vert--md text--center">
+        <div className="padding-vert--md container text-center">
           <h2>No result</h2>
         </div>
       </section>
-    );
+    )
   }
 
   return (
     <section className="margin-top--lg margin-bottom--xl">
       <>
-        <div className="container margin-top--lg">
-          <div
-            className={clsx(
-              'margin-bottom--md',
-              styles.showcaseFavoriteHeader,
-            )}>
-          </div>
-
+        <div className="margin-top--lg container">
+          <div className={cn('my-4', styles.showcaseFavoriteHeader)} />
           {Object.entries(groupByProjects).map(([key, value]) => {
             return (
               <div key={key}>
-                <div
-                  className={clsx(
-                    'margin-bottom--md',
-                    styles.showcaseFavoriteHeader,
-                  )}>
-                  <h2>{_.upperFirst(key)}</h2>
+                <div className={cn('my-4', styles.showcaseFavoriteHeader)}>
+                  <h3>{upperFirst(lang === 'en' ? key : projectTypeMap[key])}</h3>
                 </div>
-                <ul className={styles.showcaseList}>
-                  {value.map((project) => (
+                <MagicContainer className={styles.showcaseList}>
+                  {value.map(project => (
                     <ShowcaseCard key={project.title} project={project} />
                   ))}
-                </ul>
+                </MagicContainer>
               </div>
-            );
+            )
           })}
+          <MagicContainer />
         </div>
       </>
     </section>
-  );
+  )
 }
 
 function Showcase(): JSX.Element {
   return (
-    <Layout title={TITLE} description={DESCRIPTION}>
+    <MyLayout title={TITLE} description={DESCRIPTION} maxWidth={1280}>
       <main className="margin-vert--lg">
         <ShowcaseHeader />
         <ShowcaseCards />
       </main>
-    </Layout>
-  );
+    </MyLayout>
+  )
 }
 
-export default Showcase;
+export default Showcase

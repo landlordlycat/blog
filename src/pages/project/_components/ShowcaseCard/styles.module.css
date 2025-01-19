@@ -1,10 +1,9 @@
 .showcaseCard {
   position: relative;
-  box-shadow: 0 10px 30px -5px rgb(0 0 0 / 30%);
-  transition: box-shadow 0.5s, opacity 0.5s;
+  box-shadow: var(--blog-item-shadow);
+  transition: opacity 0.5s;
   will-change: transform;
   overflow: hidden;
-  touch-action: none;
 }
 
 .showcaseCard::before {
@@ -33,17 +32,19 @@
 }
 
 .showcaseCardTitle a {
-  text-decoration: none;
+  @apply no-underline;
   background: linear-gradient(
-    var(--ifm-color-primary),
-    var(--ifm-color-primary)
-  )
-    0% 100% / 0% 1px no-repeat;
-  transition: background-size ease-out 200ms;
+      var(--ifm-color-primary),
+      var(--ifm-color-primary)
+    )
+    no-repeat right bottom;
+  background-size: 0px 2px;
+  transition: background-size 300ms;
 }
 
-.showcaseCardTitle a:not(:focus):hover {
-  background-size: 100% 1px;
+.showcaseCardTitle a:hover {
+  background-size: 100% 2px;
+  background-position: left bottom;
 }
 
 .showcaseCardTitle,
@@ -83,6 +84,8 @@ html[data-theme='dark'] .showcaseCardSrcBtn:hover {
 .cardFooter {
   display: flex;
   flex-wrap: wrap;
+
+  margin: 0;
 }
 
 .tag {

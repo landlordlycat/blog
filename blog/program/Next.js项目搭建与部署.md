@@ -5,6 +5,7 @@ date: 2022-07-13
 authors: kuizuo
 tags: [next, react, ssr, vercel]
 keywords: [next, react, ssr, vercel]
+draft: false
 ---
 
 <!-- truncate -->
@@ -13,7 +14,7 @@ keywords: [next, react, ssr, vercel]
 
 ## [安装](https://nextjs.org/docs/getting-started#automatic-setup)
 
-```sh
+```bash
 npx create-next-app@latest --ts
 # or
 yarn create next-app --typescript
@@ -94,11 +95,11 @@ const User = () => {
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         setData(data)
       })
-      .catch((err) => {})
+      .catch(err => {})
   }, [id])
 
   return (
@@ -283,9 +284,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         })
         break
       case 'Put':
-        db.get(`update post set title=?,content=? where id=?`, [title, content, id], (err, rows) => {
-          res.status(200).json(rows)
-        })
+        db.get(
+          `update post set title=?,content=? where id=?`,
+          [title, content, id],
+          (err, rows) => {
+            res.status(200).json(rows)
+          },
+        )
       case 'DELETE':
         db.get(`delete from post where id=$id`, { $id: id }, (err, rows) => {
           res.status(200).json(rows)

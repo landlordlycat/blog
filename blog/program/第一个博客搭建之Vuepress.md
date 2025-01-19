@@ -9,7 +9,7 @@ keywords: [blog, vuepress, project]
 
 感谢 [vuepress-theme-reco](https://vuepress-theme-reco.recoluan.com/)主题与一篇博客使用文章[使用 vuepress 构建个人博客](https://lookroot.cn/views/article/vuepress.html#reco%E4%B8%BB%E9%A2%98)
 
-在写这篇文章前，本人非前端专业人士，只是一时兴起想开始搭建一个博客，在该博客上记录与分享一下自己所学的一切内容。（然后现在都在往前端这方向走了:joy:）
+在写这篇文章前，本人非前端专业人士，只是一时兴起想开始搭建一个博客，在该博客上记录与分享一下自己所学的一切内容。（然后现在都在往前端这方向走了）
 
 <!-- truncate -->
 
@@ -47,7 +47,7 @@ keywords: [blog, vuepress, project]
 
 ### **安装**
 
-```sh
+```bash
 #全局安装vuepress-reco
 npm install @vuepress-reco/theme-cli -g
 
@@ -77,7 +77,6 @@ npm run build
 ---
 home: true
 heroText: 愧怍的个人空间
-tagline: 我是愧怍,沉迷于代码无法自拔
 ...
 ```
 
@@ -183,7 +182,9 @@ isShowComments: false
 ---
 
 ::: tip
+
 这是 tip
+
 :::
 
 <!--more -->
@@ -235,7 +236,7 @@ categories:
 
 关于部署到服务器上，如果只是为了让别人能看到你搭建的博客，而不是要购买域名和服务器这些，直接参考文章[使用 vuepress 构建个人博客](https://lookroot.cn/views/article/vuepress.html#reco%E4%B8%BB%E9%A2%98)即可，如果有服务器和域名我这里简单说下怎么个部署法。
 
-```shell
+```bash
 npm run bulid
 ```
 
@@ -265,7 +266,7 @@ npm run bulid
 
 1. 安装 markdown-it-disable-url-encode
 
-```sh
+```bash
 npm i markdown-it-disable-url-encode
 ```
 

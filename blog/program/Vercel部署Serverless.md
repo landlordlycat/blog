@@ -72,7 +72,7 @@ vercel dev
 
 vercel 允许响应携带自定义的协议头，例如设置允许跨域的协议头。
 
-```json title='vercel.json'
+```json title='vercel.json' icon='logos:vercel-icon'
 {
   "headers": [
     {
@@ -100,19 +100,22 @@ vercel 允许响应携带自定义的协议头，例如设置允许跨域的协�
 
 Vercel 支持路由重写功能，因此我们可以实现反向代理。
 
-例如将前缀为/proxy 的所有请求都代理到 http://127.0.0.1:5000，其写法如下
+例如将前缀为/proxy 的所有请求都代理到 ，其写法如下
 
-```json title='vercel.json'
+```json title='vercel.json' icon='logos:vercel-icon'
 {
-  "rewrites": [{ "source": "/proxy/:match*", "destination": "http://127.0.0.1:5000/:match*" }]
+  "rewrites": [
+    {
+      "source": "/proxy/:match*",
+      "destination": "http://127.0.0.1:5000/:match*"
+    }
+  ]
 }
 ```
 
 请求`/proxy/hello` 将会请求到 `http://127.0.0.1:5000/hello`（不带有`/proxy`）
 
-:::caution
-
-注意无法代理前缀为/api 的接口，即使设置了也无效。
+:::warning 注意：无法代理前缀为 `/api` 的接口，即使设置了也无效。
 
 :::
 
@@ -139,7 +142,7 @@ Vercel 支持路由重写功能，因此我们可以实现反向代理。
 
 假设要部署一个 Express 项目，则配置如下
 
-```json title='vercel.json'
+```json title='vercel.json' icon='logos:vercel-icon'
 {
   "builds": [
     {
@@ -152,7 +155,7 @@ Vercel 支持路由重写功能，因此我们可以实现反向代理。
 
 安装 `@vercel/node`包
 
-```shell
+```bash
 npm i @vercel/node -D
 ```
 
@@ -164,7 +167,7 @@ npm i @vercel/node -D
 
 其 vercel.json 如下
 
-```json title='vercel.json'
+```json title='vercel.json' icon='logos:vercel-icon'
 {
   "builds": [
     {

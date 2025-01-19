@@ -1,13 +1,12 @@
 ---
 slug: vscode-extension
-title: 写一个VSCode扩展
+title: 写一个 VSCode 扩展
 date: 2022-07-11
 authors: kuizuo
 tags: [vscode, plugin, extension, develop]
 keywords: [vscode, plugin, extension, develop]
-description: 编写一个属于个人定制化的 VSCode 扩展，并将其发布到应用商店中
+description: 编写个人定制化的 VSCode 扩展，并将其发布到应用商店中。
 image: /img/project/vscode-extension.png
-sticky: 4
 ---
 
 自从使用过 VSCode 后就再也离不开 VSCode，其轻量的代码编辑器与诸多插件让多数开发者爱不释手。同样我也不例外，一年前的我甚至还特意买本《Visual Studio Code 权威指南》的书籍，来更进一步了解与使用。
@@ -17,8 +16,6 @@ sticky: 4
 扩展地址：[VSCode-extension](https://marketplace.visualstudio.com/items?itemName=kuizuo.vscode-extension-sample 'VSCode-extension')
 
 开源地址：[kuizuo/vscode-extension (github.com)](https://github.com/kuizuo/vscode-extension)
-
-![vscode-extension](https://img.kuizuo.cn/image-20220711195038039.png)
 
 <!-- truncate -->
 
@@ -44,7 +41,7 @@ sticky: 4
 
 vscode 提供插件开发的脚手架 [vscode-generator-code](https://github.com/Microsoft/vscode-generator-code 'vscode-generator-code') 来生成项目结构，选择要生成的类型
 
-```shell
+```bash
 ? ==========================================================================
 We're constantly looking for ways to make yo better!
 May we anonymously report usage statistics to improve the tool over time?
@@ -80,9 +77,9 @@ More info: https://github.com/yeoman/insight & http://yeoman.io
 
 ### 运行 vscode 插件
 
-既然创建好了工程，那必然是要运行的。由于我这里选择的 ts ＋ webpack 进行开发（视情况勾选webpack），所以是需要打包，同时脚手架已经生成好了对应.vscode 的设置。只需要按下 F5 即可开始调试，这时会打开一个新的 vscode 窗口，`Ctrl+Shift+P`打开命令行，输入`Hello World`，右下角弹出提示框`Hello World from kuizuo-plugin!`
+既然创建好了工程，那必然是要运行的。由于我这里选择的 ts ＋ webpack 进行开发（视情况勾选 webpack），所以是需要打包，同时脚手架已经生成好了对应.vscode 的设置。只需要按下 F5 即可开始调试，这时会打开一个新的 vscode 窗口，`Ctrl+Shift+P`打开命令行，输入`Hello World`，右下角弹出提示框`Hello World from kuizuo-plugin!`
 
-:::danger
+:::warning
 
 注意: 由于是 webpack 开发，在调用堆栈中可以看到有两个进程，一个是 webpack，另一个是新开的插件窗口的，同时在该调试窗口也能查看调试输出信息。
 
@@ -175,13 +172,15 @@ import * as vscode from 'vscode'
 import { exec } from 'child_process'
 
 export function activate(context: vscode.ExtensionContext) {
-  vscode.window.showInformationMessage('是否要打开愧怍的小站？', '是', '否', '不再提示').then((result) => {
-    if (result === '是') {
-      exec(`start 'https://kuizuo.cn'`)
-    } else if (result === '不再提示') {
-      // 其他操作 后文会说
-    }
-  })
+  vscode.window
+    .showInformationMessage('是否要打开愧怍的小站？', '是', '否', '不再提示')
+    .then(result => {
+      if (result === '是') {
+        exec(`start 'https://kuizuo.cn'`)
+      } else if (result === '不再提示') {
+        // 其他操作 后文会说
+      }
+    })
 }
 ```
 
@@ -226,9 +225,15 @@ export async function activate(context: vscode.ExtensionContext) {
   const key = 'kuizuoPlugin.showTip'
   const showTip = vscode.workspace.getConfiguration().get(key)
   if (showTip) {
-    const result = await vscode.window.showInformationMessage('是否要打开愧怍的小站？', '是', '否', '不再提示')
+    const result = await vscode.window.showInformationMessage(
+      '是否要打开愧怍的小站？',
+      '是',
+      '否',
+      '不再提示',
+    )
     if (result === '是') {
-      const commandLine = os.platform() === 'win32' ? `start https://kuizuo.cn` : `open https://kuizuo.cn`
+      const commandLine =
+        os.platform() === 'win32' ? `start https://kuizuo.cn` : `open https://kuizuo.cn`
       exec(commandLine)
     } else if (result === '不再提示') {
       //最后一个参数，为true时表示写入全局配置，为false或不传时则只写入工作区配置
@@ -258,7 +263,7 @@ import * as fs from 'fs'
 
 export async function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand('kuizuo-plugin.newFile', (uri: vscode.Uri) => {
-    vscode.window.showQuickPick(['js', 'ts'], {}).then(async (item) => {
+    vscode.window.showQuickPick(['js', 'ts'], {}).then(async item => {
       if (!uri?.fsPath) {
         return
       }
@@ -424,11 +429,11 @@ export function deactivate() {}
 
 在 vscode 中分别有三部分的主题可以设置
 
-| 主题         | 范围                       | 推荐                                                                                                 |
-| ------------ | -------------------------- | ---------------------------------------------------------------------------------------------------- |
+| 主题 | 范围 | 推荐 |
+| --- | --- | --- |
 | 文件图标主题 | 资源管理器内的文件前的图标 | [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme) |
-| 颜色主题     | 代码编辑器以及整体颜色主题 | [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme)      |
-| 产品图标主题 | 左侧的图标                 | [Carbon Product Icons](https://marketplace.visualstudio.com/items?itemName=antfu.icons-carbon)       |
+| 颜色主题 | 代码编辑器以及整体颜色主题 | [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme) |
+| 产品图标主题 | 左侧的图标 | [Carbon Product Icons](https://marketplace.visualstudio.com/items?itemName=antfu.icons-carbon) |
 
 不过关于主题美化就不做深入研究，上面所推荐的就已经足够好看，个人目前也在使用。
 
@@ -475,22 +480,17 @@ export function activate(context: vscode.ExtensionContext) {
 }
 ```
 
-在 vscode 插件中通过`vscode.languages.registerCompletionItemProvider`提供像补全，代码提示等功能，第一个参数为所支持的语言，第二个参数为提供的服务`vscode.CompletionItemProvider`
-这里只是封装成类的形式，目的是为了保存一些属性，例如光标位置 position，也可以传递对象形式
-`{ provideCompletionItems, resolveCompletionItem }` ，第三个参数则是触发的时机。
+在 vscode 插件中通过`vscode.languages.registerCompletionItemProvider`提供像补全，代码提示等功能，第一个参数为所支持的语言，第二个参数为提供的服务`vscode.CompletionItemProvider` 这里只是封装成类的形式，目的是为了保存一些属性，例如光标位置 position，也可以传递对象形式 `{ provideCompletionItems, resolveCompletionItem }` ，第三个参数则是触发的时机。
 
-`provideCompletionItems`
-需返回一个数组，成员类型为`vscode.CompletionItem`，可通过`new vscode.CompletionItem()`来创建。
+`provideCompletionItems` 需返回一个数组，成员类型为`vscode.CompletionItem`，可通过`new vscode.CompletionItem()`来创建。
 
 当你尝试运行上述代码时，会发现在任何值后面输入`.`都会有`log`提示。
 
 ![](https://img.kuizuo.cn/image_-ZCy88xVyq.png)
 
-但是点击后只是满足了代码补全的功能，而选择 log 选项后所要执行的操作则是在 `resolveCompletionItem` 中实现，这里仅仅只是返回一个
-null，即只有简单的补全功能，这里对整个过程进行描述（可以自行下个断点调试查看）：。
+但是点击后只是满足了代码补全的功能，而选择 log 选项后所要执行的操作则是在 `resolveCompletionItem` 中实现，这里仅仅只是返回一个 null，即只有简单的补全功能，这里对整个过程进行描述（可以自行下个断点调试查看）：。
 
-1. 当输入`.`时，程序进入到`provideCompletionItems`
-   函数内，这里可以获取到当前正在编辑的代码文档（文件名，代码内容）对应第一个参数，以及光标所在位置也就是第二个参数。还有其他参数，但这里用不到。具体可看[CompletionItemProvider](https://code.visualstudio.com/api/references/vscode-api#CompletionItemProvider%3CT%3E 'CompletionItemProvider')
+1. 当输入`.`时，程序进入到`provideCompletionItems` 函数内，这里可以获取到当前正在编辑的代码文档（文件名，代码内容）对应第一个参数，以及光标所在位置也就是第二个参数。还有其他参数，但这里用不到。具体可看[CompletionItemProvider](https://code.visualstudio.com/api/references/vscode-api#CompletionItemProvider%3CT%3E 'CompletionItemProvider')
 
 2. 选择完毕后，便会进入到 resolveCompletionItem 里面，这里可以获取到用户所选的选项内容，然后执行一系列的操作。
 
@@ -498,7 +498,11 @@ null，即只有简单的补全功能，这里对整个过程进行描述（可�
 
 ```typescript title="extension.ts"
 const commandId = 'kuizuo-plugin.log'
-const commandHandler = (editor: vscode.TextEditor, edit: vscode.TextEditorEdit, position: vscode.Position) => {
+const commandHandler = (
+  editor: vscode.TextEditor,
+  edit: vscode.TextEditorEdit,
+  position: vscode.Position,
+) => {
   const lineText = editor.document.lineAt(position.line).text
   // match case name.log etc.
   const matchVarReg = new RegExp(`\(\[^\\s\]*\[^\'\"\`\]\).${'log'}$`)
@@ -517,7 +521,12 @@ const commandHandler = (editor: vscode.TextEditor, edit: vscode.TextEditorEdit, 
   // if matched
   if (key) {
     const index = lineText.indexOf(text)
-    edit.delete(new vscode.Range(position.with(undefined, index), position.with(undefined, index + text.length)))
+    edit.delete(
+      new vscode.Range(
+        position.with(undefined, index),
+        position.with(undefined, index + text.length),
+      ),
+    )
 
     if (matchFlag === 'var' && key.includes("'")) {
       quote = '"'
@@ -540,9 +549,7 @@ const commandHandler = (editor: vscode.TextEditor, edit: vscode.TextEditorEdit, 
 context.subscriptions.push(vscode.commands.registerTextEditorCommand(commandId, commandHandler))
 ```
 
-`registerTextEditorCommand`不同于`registerCommand`，它只针对编辑器的命令，例如可以删除代码中的某个片段，增加代码等等。上面的代码就是为了找到.log
-前（包括.log）匹配的代码，进行正则提取，然后调用 edit.delete 删除指定范围，再调用 edit.insert
-来插入要替换的代码，以此达到替换的效果。
+`registerTextEditorCommand`不同于`registerCommand`，它只针对编辑器的命令，例如可以删除代码中的某个片段，增加代码等等。上面的代码就是为了找到.log 前（包括.log）匹配的代码，进行正则提取，然后调用 edit.delete 删除指定范围，再调用 edit.insert 来插入要替换的代码，以此达到替换的效果。
 
 命令注册完毕了就需要调用了，也就到了 resolveCompletionItem 的时机
 
@@ -567,15 +574,13 @@ context.subscriptions.push(vscode.commands.registerTextEditorCommand(commandId, 
 
 这里要说下 vscode 编辑器中的 Position，了解这个对代码替换、代码定位、代码高亮有很大帮助。
 
-position 有两个属性`line`和`character`，对应的也就是行号和列号（后文以`line`和`character`
-为称），**\*\***和\***\*都是从 0 开始算起，而在 vscode 自带的状态栏提示中则是从 1 开始算起**，这两者可别混淆了。
+position 有两个属性`line`和`character`，对应的也就是行号和列号（后文以`line`和`character` 为称），和 **都是从 0 开始算起，而在 vscode 自带的状态栏提示中则是从 1 开始算起**，这两者可别混淆了。
 
 其中 position 有如下几个方法
 
 **position.translate**
 
-根据当前坐标计算，例如当前 position 的 line 0，character1。`position.translate(1, 1)` 得到 line
-1，character 2，这不会改变远 position，这很好理解。但如果计算后得到的 line 与 character 有一个为负数则直接报错。
+根据当前坐标计算，例如当前 position 的 line 0，character1。`position.translate(1, 1)` 得到 line 1，character 2，这不会改变远 position，这很好理解。但如果计算后得到的 line 与 character 有一个为负数则直接报错。
 
 **position.with**
 
@@ -583,11 +588,9 @@ position 有两个属性`line`和`character`，对应的也就是行号和列号
 
 #### Range
 
-知道了坐标信息，那么就可以获取范围了。可以通过 new vscode.Range() 来截取两个 position 之间的内容，得到的是一个 对象，有
-start 与 end 属性，分别是传入的两个 position。
+知道了坐标信息，那么就可以获取范围了。可以通过 new vscode.Range() 来截取两个 position 之间的内容，得到的是一个 对象，有 start 与 end 属性，分别是传入的两个 position。
 
-同样的 Range 和 Postion 方法都一致，这里就不多叙述了，可查看其声明文件。
-知道范围就可以通过 editor 来获取范围内的代码或是 edit 来删除代码等操作。
+同样的 Range 和 Postion 方法都一致，这里就不多叙述了，可查看其声明文件。知道范围就可以通过 editor 来获取范围内的代码或是 edit 来删除代码等操作。
 
 知道了这些内容，再看上面的代码也不难理解了。
 
@@ -595,8 +598,7 @@ start 与 end 属性，分别是传入的两个 position。
 
 这里在补充一个功能：选中一个变量的时候，按下快捷键在下方添加`console.log(变量)`，相关插件 [Turbo Console Log](https://marketplace.visualstudio.com/items?itemName=ChakrounAnas.turbo-console-log 'Turbo Console Log')
 
-补：只有编辑器有光标的情况下会传入当前光标属性 position，选中状态下是不会传入 postion
-属性，而是要通过`editor.selection`来获取选中内容，是一个 Selection 对象。
+补：只有编辑器有光标的情况下会传入当前光标属性 position，选中状态下是不会传入 postion 属性，而是要通过`editor.selection`来获取选中内容，是一个 Selection 对象。
 
 ```typescript title="extension.ts"
 context.subscriptions.push(
@@ -634,8 +636,7 @@ context.subscriptions.push(
 
 ### WebView
 
-使用 webView 可以在 vscode 内显示自定义的网页内容，丰富 vscode 功能，但所消耗的性能是肯定有的，就有可能影响 vscode
-的运行速度。官方给出的建议是：
+使用 webView 可以在 vscode 内显示自定义的网页内容，丰富 vscode 功能，但所消耗的性能是肯定有的，就有可能影响 vscode 的运行速度。官方给出的建议是：
 
 - 这个功能真的需要放在`VSCode`中吗？作为单独的应用程序或网站会不会更好呢？
 
@@ -673,9 +674,7 @@ npm i vsce -g
 vsce package
 ```
 
-:::danger
-
-如果使用pnpm的话，有可能会打包失败，提示：npm ERR! missing: xxxxxx
+:::warning 如果使用 pnpm 的话，有可能会打包失败，提示：npm ERR! missing: xxxxxx
 
 :::
 
@@ -707,9 +706,7 @@ vsce login <publisher name>
 
 这里的 `publisher name` 根据 package.json 中的 `publisher`，会要求你输入 `Personal Access Token`，把刚刚创建的 `token` 的值粘贴过来即可
 
-提示
-`The Personal Access Token verification succeeded for the publisher 'kuizuo'.`
-就说明验证成功
+提示 `The Personal Access Token verification succeeded for the publisher 'kuizuo'.` 就说明验证成功
 
 **4、发布应用**
 
@@ -718,7 +715,9 @@ vsce publish
 ```
 
 :::warning
+
 这里要保证 package.json 的 name 在插件市场中唯一，否则会提示 The Extension Id already exist in the Marketplace. Please use the different Id。
+
 :::
 
 运行完毕后，最终提示`Published kuizuo.vscode-extension-sample v1.0.0.` 就说明发布完毕，发布和 npm 包一样，都无需审核，但要求包名唯一。

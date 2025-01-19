@@ -6,24 +6,18 @@ authors: kuizuo
 tags: [chrome, plugin, vue, develop]
 keywords: [chrome, plugin, vue, develop]
 description: 使用 Vue2 开发一个 Chrome 插件
-image: /img/blog/vue-chrome-extension.png
+image: https://img.kuizuo.cn/2024/0729092449-vue-chrome-extension.png
 ---
-
-![mini](https://img.kuizuo.cn/mini.jpg)
-
-<!-- truncate -->
-
-## 前言
 
 我当时学习开发 Chrome 插件的时候，还不会 Vue，更别说 Webpack 了，所以使用的都是原生的 html 开发，效率就不提了，而这次就准备使用 vue-cli 来进行编写一个某 B 站获取视频信息,评论的功能（原本是打算做自动回复的），顺便巩固下 chrome 开发（快一年没碰脚本类相关技术了），顺便写套模板供自己后续编写 Chrome 插件做铺垫。
 
-相关代码开源[github 地址](https://github.com/kuizuo/vue-chrome-extension)
+<!-- truncate -->
 
 ## 环境搭建
 
 [Vue Web-Extension - A Web-Extension preset for VueJS (vue-web-extension.netlify.app)](https://vue-web-extension.netlify.app/)
 
-```sh
+```bash
 npm install -g @vue/cli
 npm install -g @vue/cli-init
 vue create --preset kocal/vue-web-extension my-extension
@@ -39,7 +33,7 @@ npm run server
 
 ### 项目结构
 
-```
+```tree
 ├─src
 |  ├─App.vue
 |  ├─background.js
@@ -216,7 +210,7 @@ module.exports = {
 
 ![image-20210917142340863](https://img.kuizuo.cn/image-20210917142340863.png)
 
-:::danger
+:::warning
 
 如果使用`babel-plugin-component`按需引入，组件的样式将无法载入，同时自定义组件如果编写了 style 标签，那么也同样无法载入，报错：Cannot read properties of undefined (reading 'appendChild')
 
@@ -416,7 +410,9 @@ window.onload = function () {
 
   function getInfo() {
     let username = $('#v_upinfo > div.up-info_right > div.name > a.username').text()
-    let follow = $(`#v_upinfo > div.up-info_right > div.btn-panel > div.default-btn.follow-btn.btn-transition.b-gz.following > span > span > span`).text()
+    let follow = $(
+      `#v_upinfo > div.up-info_right > div.btn-panel > div.default-btn.follow-btn.btn-transition.b-gz.following > span > span > span`,
+    ).text()
     let title = $(`#viewbox_report > h1 > span`).text()
     let view = $('#viewbox_report > div > span.view').attr('title')
 
@@ -444,7 +440,9 @@ window.onload = function () {
 
   function getInfo() {
     let username = $('#v_upinfo > div.up-info_right > div.name > a.username').text().trim()
-    let follow = $(`#v_upinfo > div.up-info_right > div.btn-panel > div.default-btn.follow-btn.btn-transition.b-gz.following > span > span > span`).text()
+    let follow = $(
+      `#v_upinfo > div.up-info_right > div.btn-panel > div.default-btn.follow-btn.btn-transition.b-gz.following > span > span > span`,
+    ).text()
     let title = $(`#viewbox_report > h1 > span`).text()
     let view = $('#viewbox_report > div > span.view').attr('title')
 
@@ -478,7 +476,9 @@ window.onload = function () {
 
 ```js
 // 评论文本框
-$('#comment > div > div.comment > div > div.comment-send > div.textarea-container > textarea').val('要回复的内容')
+$('#comment > div > div.comment > div > div.comment-send > div.textarea-container > textarea').val(
+  '要回复的内容',
+)
 // 评论按钮
 $('#comment > div > div.comment > div > div.comment-send > div.textarea-container > button').click()
 ```
@@ -493,8 +493,12 @@ window.onload = function () {
     chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       let { cmd, message } = request
       if (cmd === 'addComment') {
-        $('#comment > div > div.comment > div > div.comment-send > div.textarea-container > textarea').val(message)
-        $('#comment > div > div.comment > div > div.comment-send > div.textarea-container > button').click()
+        $(
+          '#comment > div > div.comment > div > div.comment-send > div.textarea-container > textarea',
+        ).val(message)
+        $(
+          '#comment > div > div.comment > div > div.comment-send > div.textarea-container > button',
+        ).click()
       }
 
       sendResponse('我收到了你的消息！')
@@ -512,7 +516,14 @@ window.onload = function () {
       <el-header height="24">B站小工具</el-header>
       <el-main>
         <el-row :gutter="5">
-          <el-input type="textarea" :rows="2" placeholder="请输入内容" v-model="message" class="mb-5"> </el-input>
+          <el-input
+            type="textarea"
+            :rows="2"
+            placeholder="请输入内容"
+            v-model="message"
+            class="mb-5"
+          >
+          </el-input>
 
           <div>
             <el-button @click="addComment">评论</el-button>
@@ -534,7 +545,7 @@ window.onload = function () {
       }
     },
     created() {
-      chrome.storage.sync.get('list', (obj) => {
+      chrome.storage.sync.get('list', obj => {
         this.list = obj['list']
       })
     },
@@ -567,7 +578,7 @@ window.onload = function () {
 
 实现类似点赞功能也是同理的。
 
-## 相关模板 
+## 相关模板
 
 [vitesse-webext](https://github.com/antfu/vitesse-webext)
 

@@ -12,11 +12,6 @@ keywords: [vscode, 开发工具, 配置]
 
 ![vscode上号](https://img.kuizuo.cn/vscode%E4%B8%8A%E5%8F%B7.jpg)
 
-看一大堆vscode相关推荐，不如直接把别人的vscode配置直接导入到本地上运行测试。
-以下是我的 Vscode 全部配置文件，需要的可自行下载导入（替换本地 vscode 相对应的配置文件即可）。
-
-> 下载地址 https://pan.kuizuo.cn/s/RgiP 密码 kuizuo
-
 <!-- truncate -->
 
 ## 前言
@@ -94,9 +89,7 @@ AI 写代码，用过都说好。
 
 ![image-20210817221312429](https://img.kuizuo.cn/image-20210817221312429.png)
 
-:::caution
-
-是点击左上角灰色的 Send Request，如果有安装 Code Runner 的用户，容易直接点成右上角的播放键
+:::tip 是点击左上角灰色的 Send Request，如果有安装 Code Runner 的用户，容易直接点成右上角的播放键.
 
 :::
 
@@ -149,16 +142,16 @@ AI 写代码，用过都说好。
 以下功能，能用快捷键就别用鼠标了
 
 - **<kbd>Ctrl</kbd>+<kbd>E</kbd>/<kbd>P</kbd> 跳转到近期文件(再次按下即可切换下一个文件,加 <kbd>Shift</kbd>则是上一个文件)**
-- **<kbd>Ctrl</kbd>+<kbd>Tab</kbd> 切换Tab （类比于 window <kbd>Alt</kbd>+<kbd>Tab</kbd>）在已显示的 Tab 切换比上面好用一些**
+- **<kbd>Ctrl</kbd>+<kbd>Tab</kbd> 切换 Tab （类比于 window <kbd>Alt</kbd>+<kbd>Tab</kbd>）在已显示的 Tab 切换比上面好用一些**
 - <kbd>Ctrl</kbd>+<kbd>G</kbd> 跳转到某行(别再滚动鼠标了)
 - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>O</kbd> 跳转(列举)当前文件某个函数
-- **<kbd>Ctrl</kbd>+<kbd>T</kbd> 全局搜索某个函数(markdown则是标题)**
-- <kbd>Ctrl</kbd>+<kbd>N</kbd> 创建一个临时文件(别再鼠标双击tab栏了)
-- <kbd>**Ctrl</kbd>+<kbd>W</kbd> 关闭当前Tab页面（浏览器适用，别加Shift，别再鼠标点击关闭按钮了）**
+- **<kbd>Ctrl</kbd>+<kbd>T</kbd> 全局搜索某个函数(markdown 则是标题)**
+- <kbd>Ctrl</kbd>+<kbd>N</kbd> 创建一个临时文件(别再鼠标双击 tab 栏了)
+- <kbd>Ctrl</kbd>+<kbd>W</kbd> 关闭当前 Tab 页面（浏览器适用，别加 Shift，别再鼠标点击关闭按钮了）
 - **<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd> 打开刚刚关闭的页面（手残必备,浏览器适用）**
 - <kbd>Ctrl</kbd>+<kbd>B</kbd> 切换左侧导航栏
 
-以上基本就是我常用的快捷键了，可以说些快捷键，确实提升了我编写代码的效率。这里强烈建议马上打开Vscode，在不借用鼠标的情况下，使用以上快捷键。会有意想不到的使用体验！
+以上基本就是我常用的快捷键了，可以说些快捷键，确实提升了我编写代码的效率。这里强烈建议马上打开 Vscode，在不借用鼠标的情况下，使用以上快捷键。会有意想不到的使用体验！
 
 ### 自定义快捷键
 
@@ -234,13 +227,13 @@ AI 写代码，用过都说好。
 
 像导入本地模块`fs`，却没有代码提示，想要有本地模块代码提示，最快捷的方法就是通过下面一行代码
 
-```shell
+```bash
 npm install @types/node
 ```
 
 但是如果你像上面那样，目录下没有`package.json`文件是肯定安装不上去的，这时候是需要初始化项目结构也就是执行下面的代码
 
-```shell
+```bash
 npm init
 或
 npm init -y
@@ -252,7 +245,7 @@ npm init -y
 
 现在，我的代码里有`jquery`代码，但是本地已有`jquery.js`文件，又不想安装`jquery`的模块，但是又要`jquery`的代码提示，这时候你就可以输入下面代码，就能看到对应的代码。
 
-```shell
+```bash
 npm install @types/jquery
 ```
 
@@ -272,7 +265,7 @@ npm install @types/jquery
 
 不妨试试
 
-```shell
+```bash
 npm install @types/express
 ```
 
